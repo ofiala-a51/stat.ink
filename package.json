@@ -26,7 +26,7 @@
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
     "eslint": "^6.6.0",
     "flag-icon-css": "^3.4.5",
-    "flot": "~0.8.3",
+    "flot": "~4.1.1",
     "inputmask": "^4.0.9",
     "jdenticon": "^2.2.0",
     "jquery": "^3.4.1",
