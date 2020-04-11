@@ -1,74 +1,74 @@
 Request Body
 ============
 
-stat.ink へ `POST` や `PUT`、`PATCH` で Content-Body を投げる方法です。
+How to throw Content-Body to stat.ink by `POST`,` PUT`, or `PATCH`.
 
-概要
+Overview
 ----
 
-次のいずれかの形式で表された Content Body を受け付けます。
+Accepts a Content Body in one of the following formats:
 
-|形式|`Content-Type`||
+| Format | `Content-Type` ||
 |-|-|-|
-|JSON|`application/json`|バイナリデータを送信しないアプリに推奨|
-|Message Pack|`application/x-msgpack`|バイナリデータを送信するアプリに推奨|
-|URL Encoded|`application/x-www-form-urlencoded`|非推奨|
-|Multipart Form-data|`multipart/form-data`|非推奨|
+| JSON | `application / json` | Recommended for apps that do not send binary data |
+| Message Pack | `application / x-msgpack` | Recommended for apps that send binary data |
+| URL Encoded | `application / x-www-form-urlencoded` | Deprecated |
+| Multipart Form-data | `multipart / form-data` | Deprecated |
 
-非推奨とされている形式について、この仕様書での送信方法の解説は行いません。
+Regarding deprecated formats, the transmission method is not described in this specification.
 
 
-また、次の形式でエンコードされた Content Body を受け付けます。
+It also accepts Content Body encoded in the following format:
 
-|形式|`Content-Encoding`||
+| Format | `Content-Encoding` ||
 |-|-|-|
-|(raw data)|なし|生データ|
-|(raw data)|`identity`|生データ|
-|Gzip|`gzip`|Gzip圧縮したデータ|
+| (raw data) | none | raw data |
+| (raw data) | `identity` | Raw data |
+| Gzip | `gzip` | Gzip compressed data |
 
 
-`Content-Type: application/json`
+`Content-Type: application / json`
 --------------------------------
 
-- エンドポイントの仕様書で記載されている構造をそのまま JSON のオブジェクトに設定して送信します。
+-Set the structure described in the endpoint specification as it is to a JSON object and send it.
 
-- パラメータが整数値の時、それが文字列として送信されても何ら問題はありません（`{"level": "10"}`は「妥当」）
+-When the parameter is an integer value, there is no problem if it is sent as a string (`{" level ":" 10 "}` is "reasonable")
 
-- パラメータがブール値に見える時、必ず指定された文字列を送信してください。（`true` および `false` は受け付けません）
+-Be sure to send the specified string when the parameter looks like a boolean. (`True` and` false` are not accepted)
 
-- バイナリデータ（画像など）を電文に含めることはできません。
+-Binary data (such as images) cannot be included in the message.
 
-例:
+Example:
 
 ```
-POST /api/v2/endpoint HTTP/1.1
+POST / api / v2 / endpoint HTTP / 1.1
 Host: stat.ink
 Authorization: Bearer APIKEYAPIKEYAPIKEYAPIKEY
-Content-Type: application/json
+Content-Type: application / json
 Content-Encoding: identity
 Content-Length: ***
 
-{"key1":"value1","key2":42, ..}
+{"key1": "value1", "key2": 42, ..}
 ```
 
-`Content-Type: application/x-msgpack`
+`Content-Type: application / x-msgpack`
 --------------------------------
 
-- エンドポイントの仕様書で記載されている構造をそのまま MessagePack のオブジェクトに設定して送信します。
+-Set the structure described in the endpoint specification as it is in the MessagePack object and send it.
 
-- パラメータが整数値の時、それが文字列として送信されても何ら問題はありません（`{"level": "10"}`は「妥当」）
+-When the parameter is an integer value, there is no problem if it is sent as a string (`{" level ":" 10 "}` is "reasonable")
 
-- パラメータがブール値に見える時、必ず指定された文字列を送信してください。（`true` および `false` は受け付けません）
+-Be sure to send the specified string when the parameter looks like a boolean. (`True` and` false` are not accepted)
 
-- バイナリデータ（画像など）を送信データに含めることができます（エンドポイントの仕様書で許可されている場合に限ります）
+-Binary data (such as images) can be included in the transmitted data (only if allowed by the endpoint specification)
 
-例:
+Example:
 
 ```
-POST /api/v2/endpoint HTTP/1.1
+POST / api / v2 / endpoint HTTP / 1.1
 Host: stat.ink
 Authorization: Bearer APIKEYAPIKEYAPIKEYAPIKEY
-Content-Type: application/x-msgpack
+Content-Type: application / x-msgpack
 Content-Encoding: identity
 Content-Length: ***
 
@@ -78,31 +78,31 @@ Content-Length: ***
 `Content-Encoding: gzip`
 ------------------------
 
-stat.ink への送信時には、必要に応じて JSON/MsgPack のデータを gzip で圧縮した後送信することができます。
+When sending to stat.ink, JSON / MsgPack data can be sent after compressing with gzip if necessary.
 
-イベントデータを含む場合など、データが大きい場合にそれなりの圧縮率が得られますが、
-画像を含む場合などは思ったような圧縮率が得られませんから、全体としては期待した効果は得られない可能性が高いと思われます。
+When data is large such as when event data is included, a reasonable compression ratio can be obtained,
+The compression ratio as expected is not obtained when images are included, so it is highly likely that the expected effect cannot be obtained as a whole.
 
-例:
+Example:
 
 ```
-POST /api/v2/endpoint HTTP/1.1
+POST / api / v2 / endpoint HTTP / 1.1
 Host: stat.ink
 Authorization: Bearer APIKEYAPIKEYAPIKEYAPIKEY
-Content-Type: application/x-msgpack
+Content-Type: application / x-msgpack
 Content-Encoding: gzip
-Content-Length: [length(gzip(msgpack(data)]
+Content-Length: [length (gzip (msgpack (data)]]
 
-[gzip(msgpack(data))]
+[gzip (msgpack (data))]
 ```
 
-V1との差異
+Difference from V1
 ---------
 
-- 一般的なform送信時の形式が非推奨であること以外は大体同じです。
+- It is almost the same except that the general form when sending is deprecated.
 
 ----
 
-[![CC-BY 4.0](https://stat.ink/static-assets/cc/cc-by.svg)](http://creativecommons.org/licenses/by/4.0/deed.ja)
+[! [CC-BY 4.0] (https://stat.ink/static-assets/cc/cc-by.svg)] (http://creativecommons.org/licenses/by/4.0/deed.ja)
 
-この文章は[Creative Commons - 表示 4.0 国際](http://creativecommons.org/licenses/by/4.0/deed.ja)の下にライセンスされています。
+This text is licensed under [Creative Commons-Attribution 4.0 International] (http://creativecommons.org/licenses/by/4.0/deed.ja).
