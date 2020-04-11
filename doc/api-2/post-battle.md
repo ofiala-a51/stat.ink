@@ -14,7 +14,7 @@ Please refer to [request-body.md] (request-body.md) for the request body format 
 
 If the submission is successful, the result will be returned in the HTTP response header as follows:
 
-| Response Header | Response Header | Example of value <br> Example | Meaning <br> Meaning |
+| Response Header | Example of value | Meaning |
 |-|-|-|
 | `Location` |` https: // stat.ink / @ username / spl2 / 42` | The battle details page displayed on the browser |
 | `X-Api-Location` |` https: // stat.ink / api / v2 / battle / 42` | This is the URL to use with the API |
