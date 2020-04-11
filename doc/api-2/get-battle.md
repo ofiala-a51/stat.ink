@@ -1,54 +1,54 @@
-`GET /api/v2/battle`, `GET /api/v2/user-battle`
+`GET / api / v2 / battle`,` GET / api / v2 / user-battle`
 ===============================================
 
-| |`/api/v2/battle`|`/api/v2/user-battle`|
+| | `/ api / v2 / battle` |` / api / v2 / user-battle` |
 |-|-|-|
-|URL|`https://stat.ink/api/v2/battle`|`https://stat.ink/api/v2/user-battle`|
-|Return-Type|`application/json`|`application/json`|
-|認証|なし|[必要](authorization.md)|
+| URL | `https: // stat.ink / api / v2 / battle` |` https: // stat.ink / api / v2 / user-battle` |
+| Return-Type | `application / json` |` application / json` |
+| Authentication | None | [Required] (authorization.md) |
 
 
-バトル情報の一覧をJSON形式、[`battle`構造体](struct/battle.md)の配列で返します。
+Returns a list of battle information in JSON format, as an array of [`battle` structure] (struct / battle.md).
 
-`only=splatnet_number` が指定されているときは、数値の配列で返します。
+If `only = splatnet_number` is specified, return as an array of numbers.
 
-このAPIは結構重いのでほどほどの頻度で叩いてください。
+This API is quite heavy, so hit it with moderate frequency.
 
 
 
-クエリパラメータ
+Query parameters
 ----------------
 
-|パラメータ名|型|内容|
-|------------|--|----|
-|`screen_name`|文字列|指定されたユーザのデータのみを検索します。指定しなければすべてのユーザを検索します。<br>`user-battle`ではこのパラメータは指定できません。|
-|`newer_than`|数値|指定されたバトルIDよりも新しいバトルを検索します。指定した数値そのものは含みません。|
-|`older_than`|数値|指定されたバトルIDよりも古いバトルを検索します。指定した数値そのものは含みません。|
-|`count`|数値(1～50)|指定した個数を上限に検索します。<br>`only=splatnet_number`が指定されているときは1000件が上限になります。|
-|`order`|指定文字列|`asc` : 投稿が古い順に表示します。<br>`desc` : 投稿が新しい順に表示します。<br>`splatnet_asc` : イカリング2の識別番号が小さい順に表示します。<br>`splatnet_desc` : イカリング2の識別番号が大きい順に表示します。<br>デフォルトは`desc`です。ただし、`only`によって動作が変わります。|
-|`only`|指定文字列|`splatnet_number` : イカリング2の識別番号のみを返します。|
+| Parameter name | type | contents |
+| ------------ |-| ---- |
+| `screen_name` | string | Search only for data for the specified user. If not specified, search for all users. <br> `user-battle` does not support this parameter. |
+| `newer_than` | Number | Search for battles newer than the specified battle ID. It does not include the specified number itself. |
+| `older_than` | Number | Search for battles older than the specified battle ID. It does not include the specified number itself. |
+| `count` | Numeric value (1-50) | Search with the specified number as the upper limit. <br> When `only = splatnet_number` is specified, the limit is 1000. |
+| `order` | Specified string |` asc`: Posts are displayed in chronological order. <br> `desc`: Displays posts in reverse chronological order. <br> `splatnet_asc`: Display the squid rings 2 in ascending order. <br> `splatnet_desc`: Display the squid rings 2 in ascending order. <br> The default is `desc`. However, the behavior changes with `only`. |
+| `only` | Specified string |` splatnet_number`: Returns only the identification number of squid ring 2. |
 
 
-`user-battle` について
+About `user-battle`
 ----------------------
 
-`user-battle`を使用すると、`Authorization`ヘッダで認証されたユーザについての情報を返します。
+Using `user-battle` returns information about the authenticated user in the` Authorization` header.
 
-これによって、「自分の情報を取得したいが、APIキーはわかっても、`screen_name`はわからない」ときに対応できます。
+This allows you to respond when you want to get your information, but you know the API key but do not know the `screen_name`.
 
 
-`only=splatnet_number` について
+About `only = splatnet_number`
 -------------------------------
 
-`only=splatnet_number` を指定すると、次のような状態になります。
+If you specify `only = splatnet_number`, the status will be as follows.
 
-  - イカリング2のバトル番号のみの配列が返ります。
-  - イカリング2のバトル番号が指定されていないバトルは無視されます。
-  - `order` のデフォルトが `splatnet_desc` に変わります。（上書き可能）
+  -Returns an array containing only the battle numbers for Squid Ring 2.
+  -Battles where the battle number of Squid Ring 2 is not specified will be ignored.
+  -`order` default changes to` splatnet_desc`. (Can be overwritten)
 
 
 ----
 
-[![CC-BY 4.0](https://stat.ink/static-assets/cc/cc-by.svg)](http://creativecommons.org/licenses/by/4.0/deed.ja)
+[! [CC-BY 4.0] (https://stat.ink/static-assets/cc/cc-by.svg)] (http://creativecommons.org/licenses/by/4.0/deed.ja)
 
-この文章は[Creative Commons - 表示 4.0 国際](http://creativecommons.org/licenses/by/4.0/deed.ja)の下にライセンスされています。
+This text is licensed under [Creative Commons-Attribution 4.0 International] (http://creativecommons.org/licenses/by/4.0/deed.ja).
