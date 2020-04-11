@@ -3,9 +3,9 @@ Authorization
 
 If stat.ink requires API access authorization, you need to use the following methods.
 
-  -Use the API key assigned to each user. (This API key is the same as v1 API)
+  - Use the API key assigned to each user. (This API key is the same as v1 API)
 
-  -Use the `Authorization: Bearer` HTTP header.
+  - Use the `Authorization: Bearer` HTTP header.
 
 
 Get API key
