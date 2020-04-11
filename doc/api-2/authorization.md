@@ -1,38 +1,38 @@
 Authorization
 =============
 
-stat.inkではAPIへのアクセス認可が必要な場合、次の方法を利用してのアクセスが必要となります。
+If stat.ink requires API access authorization, you need to use the following methods.
 
-  - ユーザごとに割り当てられたAPIキーを用います。（このAPIキーはv1 APIと共通です）
+  -Use the API key assigned to each user. (This API key is the same as v1 API)
 
-  - `Authorization: Bearer` HTTPヘッダを利用します。
+  -Use the `Authorization: Bearer` HTTP header.
 
 
-APIキーの取得
+Get API key
 -------------
 
-stat.ink webアプリケーションは、ウェブサイト上から会員登録を行うと、各ユーザにAPIキーを発行します。
+The stat.ink web application issues an API key to each user when registering for membership on the website.
 
-このAPIキーは各ユーザのプロフィール設定画面から表示できます。
+This API key can be displayed from each user's profile setting screen.
 
-各アプリケーションはこのAPIキーをユーザに入力してもらうことによって連携を行います。
+Each application cooperates by having the user input this API key.
 
-なお、APIキーは`/^[0-9A-Za-z_-]{43}$/`です。
-（Base64の `+` `/` が `-` `_` に置き換えられ、`=` がない 43 文字と等しい）
+The API key is `/ ^ [0-9A-Za-z _-] {43} $ /`.
+(Base64 `+` `/` is replaced with `-`` _` and equals 43 characters without `=`)
 
 
-リクエストの送信
+Submit request
 ----------------
 
-認可が必要なAPIエンドポイント（例えばバトル投稿）にアクセスする際、次のように Bearer スキームを利用した
-Authorization ヘッダを付加して要求を投げる必要があります。
+When accessing an API endpoint that requires authorization (for example, battle posting), the Bearer scheme was used as follows:
+You need to add an Authorization header to make the request.
 
-例: (API key = `sD093VHLHW41b9xdaM7zVpyIX2TbIornR0h47RaUNGA`)
+Example: (API key = `sD093VHLHW41b9xdaM7zVpyIX2TbIornR0h47RaUNGA`)
 ```
-POST /api/v2/endpoint HTTP/1.1
+POST / api / v2 / endpoint HTTP / 1.1
 Host: stat.ink
 Authorization: Bearer sD093VHLHW41b9xdaM7zVpyIX2TbIornR0h47RaUNGA
-Content-Type: application/json
+Content-Type: application / json
 Content-Length: 42
 
 ...
