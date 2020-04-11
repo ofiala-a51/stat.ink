@@ -30,13 +30,13 @@ It also accepts Content Body encoded in the following format:
 `Content-Type: application / json`
 --------------------------------
 
--Set the structure described in the endpoint specification as it is to a JSON object and send it.
+- Set the structure described in the endpoint specification as it is to a JSON object and send it.
 
--When the parameter is an integer value, there is no problem if it is sent as a string (`{" level ":" 10 "}` is "reasonable")
+- When the parameter is an integer value, there is no problem if it is sent as a string (`{" level ":" 10 "}` is "reasonable")
 
--Be sure to send the specified string when the parameter looks like a boolean. (`True` and` false` are not accepted)
+- Be sure to send the specified string when the parameter looks like a boolean. (`True` and` false` are not accepted)
 
--Binary data (such as images) cannot be included in the message.
+- Binary data (such as images) cannot be included in the message.
 
 Example:
 
@@ -54,13 +54,13 @@ Content-Length: ***
 `Content-Type: application / x-msgpack`
 --------------------------------
 
--Set the structure described in the endpoint specification as it is in the MessagePack object and send it.
+- Set the structure described in the endpoint specification as it is in the MessagePack object and send it.
 
--When the parameter is an integer value, there is no problem if it is sent as a string (`{" level ":" 10 "}` is "reasonable")
+- When the parameter is an integer value, there is no problem if it is sent as a string (`{" level ":" 10 "}` is "reasonable")
 
--Be sure to send the specified string when the parameter looks like a boolean. (`True` and` false` are not accepted)
+- Be sure to send the specified string when the parameter looks like a boolean. (`True` and` false` are not accepted)
 
--Binary data (such as images) can be included in the transmitted data (only if allowed by the endpoint specification)
+- Binary data (such as images) can be included in the transmitted data (only if allowed by the endpoint specification)
 
 Example:
 
